@@ -1,0 +1,7 @@
+{
+  "name": "Wails + Vite + React + TS + TailwindCSS (v3) template",
+  "shortname": "wails-vite-react-ts-tailwind-template",
+  "author": "Artur Siarohau",
+  "description": "Wails template built from using the Vite CLI tool and react-ts plugin. Then TailwindCSS (v3) was also added",
+  "helpurl": "https://github.com/hotafrika/wails-vite-react-ts-tailwind-template"
+}
