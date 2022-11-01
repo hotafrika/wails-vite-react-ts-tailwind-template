@@ -6,7 +6,7 @@ Build with `Wails CLI v2.0.0`.
 
 To use this [template](https://wails.io/docs/community/templates):
 ```shell
-wails init -n "Your Project Name" -t https://github.com/hotafrika/wails-vite-react-ts-tailwind-template
+wails init -n "DanceSoftware" -t https://github.com/hotafrika/wails-vite-react-ts-tailwind-template
 cd frontend/src
 npm install
 ```
