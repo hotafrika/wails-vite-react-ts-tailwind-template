@@ -1,5 +1,5 @@
 import React from "react";
-
+import Pagination from "./Pagination";
 /*
   This example requires some changes to your config:
 
@@ -143,6 +143,7 @@ export default function Example() {
           </div>
         ))}
       </div>
+      <Pagination />
     </>
   );
 }

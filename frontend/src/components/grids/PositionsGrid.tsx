@@ -1,4 +1,5 @@
 import React from "react";
+import Pagination from "./Pagination";
 
 const people = [
   {
@@ -42,6 +43,8 @@ export default function Example() {
           </div>
         ))}
       </div>
+      <Pagination />
+
     </>
   );
 }

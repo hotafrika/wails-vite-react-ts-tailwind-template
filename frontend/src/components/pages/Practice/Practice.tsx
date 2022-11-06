@@ -1,22 +1,30 @@
 import React from "react";
 import { Fragment, useState } from "react";
-import MusicPlayer from "../../layout/MusicPlayer.js";
+import MusicPlayer from "../../layout/MusicPlayer";
+import Stats from "../../layout/Stats";
+import Playlist from "../../layout/Playlist";
 
-function Practice() {
+function Dashboard() {
   return (
     <>
-      <div className="practice-page">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="text-2xl font-semibold text-gray-900">Practice</h1>
-        </div>
-
-        <div>
-          <MusicPlayer />
-          <MusicPlayer />
+      <div className="dashboard">
+        <div className="mt-4">
+          <div>
+            <Stats />
+          </div>
+          <div className="mt-4">
+            {/* <div><Practice /></div> */}
+            <div>
+              <Playlist />
+            </div>
+          </div>
+          <div className="mt-6">
+            <MusicPlayer />
+          </div>
         </div>
       </div>
     </>
   );
 }
 
-export default Practice;
+export default Dashboard;
