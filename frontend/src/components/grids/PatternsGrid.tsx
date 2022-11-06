@@ -40,9 +40,9 @@ function classNames(...classes) {
 export default function Example() {
   return (
     <>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {/* <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h1 className="text-2xl font-semibold text-gray-900">Combinations</h1>
-      </div>
+      </div> */}
       <div>
         <h2 className="text-sm font-medium text-gray-500">Pinned Projects</h2>
         <ul
