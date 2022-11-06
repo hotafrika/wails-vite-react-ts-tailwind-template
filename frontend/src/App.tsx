@@ -1,6 +1,7 @@
 import './App.css'
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+import { Outlet } from "react-router-dom";
 import {
     Bars3Icon,
     CalendarIcon,
@@ -12,10 +13,11 @@ import {
     XMarkIcon,
 } from '@heroicons/react/24/outline'
 import Dashboard from "./components/pages/Dashboard/Dashboard"
+import React from 'react';
 
 const navigation = [
-    { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-    { name: 'Musicality', href: '#', icon: ChartBarIcon, current: false },
+    { name: 'Dashboard', href: '/', icon: HomeIcon, current: true },
+    { name: 'Musicality', href: '/music', icon: ChartBarIcon, current: false },
     { name: 'Shines', href: '#', icon: UsersIcon, current: false },
     { name: 'Positions', href: '#', icon: FolderIcon, current: false },
     { name: 'Patterns', href: '#', icon: CalendarIcon, current: false },
@@ -205,8 +207,12 @@ function App() {
                                 <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
                             </div>
                             <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
+
+                                <Outlet />
                                 {/* Replace with your content */}
-                                <Dashboard />
+                                {/* <Dashboard /> */}
+
+                                
                                 {/* <div>
 
 
