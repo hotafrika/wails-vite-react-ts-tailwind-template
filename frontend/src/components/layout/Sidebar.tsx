@@ -23,11 +23,11 @@ const navigation = [
   { name: "Musicality", href: "/music", icon: ChartBarIcon, current: false },
   { name: "Practice", href: "/practice", icon: ChartBarIcon, current: false },
 
-  { name: "Shines", href: "#", icon: UsersIcon, current: false },
-  { name: "Positions", href: "#", icon: FolderIcon, current: false },
-  { name: "Patterns", href: "#", icon: CalendarIcon, current: false },
-  { name: "Combinations", href: "#", icon: InboxIcon, current: false },
-  { name: "NewSideBarItem", href: "#", icon: ChartBarIcon, current: false },
+  { name: "Shines", href: "/shines", icon: UsersIcon, current: false },
+  { name: "Positions", href: "/position", icon: FolderIcon, current: false },
+  { name: "Patterns", href: "/patterns", icon: CalendarIcon, current: false },
+  { name: "Combinations", href: "/combinations", icon: InboxIcon, current: false },
+  // { name: "NewSideBarItem", href: "#", icon: ChartBarIcon, current: false },
 ];
 
 export default function Sidebar() {

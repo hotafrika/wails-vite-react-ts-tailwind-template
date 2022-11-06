@@ -1,16 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
-import Dashboard from './components/pages/Dashboard/Dashboard'
-import Music from './components/pages/Music/Music';
-import Practice from './components/pages/Practice/Practice'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
+import Dashboard from "./components/pages/Dashboard/Dashboard";
+import Music from "./components/pages/Music/Music";
+import Practice from "./components/layout/SelectPractice";
+import Combinations from "./components/grids/CombinationsGrid";
+import Position from "./components/grids/PositionsGrid";
+import Patterns from "./components/grids/PatternsGrid";
+import Shines from "./components/grids/BasicsGrid";
 
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -42,15 +42,15 @@ const router = createBrowserRouter([
         element: <Patterns />,
       },
       {
-        path: "/Shines",
-        element: <Shines />,    
+        path: "/shines",
+        element: <Shines />,
       },
     ],
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-     <RouterProvider router={router} />
+    <RouterProvider router={router} />
   </React.StrictMode>
-)
+);
