@@ -1,5 +1,6 @@
 import React from "react";
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
+import Pagination from "./Pagination";
 
 const projects = [
   {
@@ -88,6 +89,8 @@ export default function Example() {
           ))}
         </ul>
       </div>
+      <Pagination />
+
     </>
   );
 }

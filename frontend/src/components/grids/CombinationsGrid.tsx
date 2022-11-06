@@ -1,5 +1,6 @@
 import React from "react";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/20/solid";
+import Pagination from "./Pagination";
 
 const people = [
   {
@@ -81,6 +82,9 @@ export default function Example() {
           </li>
         ))}
       </ul>
+      <Pagination />
+
     </>
+
   );
 }
