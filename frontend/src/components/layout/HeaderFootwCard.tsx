@@ -21,7 +21,7 @@ export default function Example({ children }) {
             <ol role="list" className="flex space-x-4 rounded-md bg-white px-6 shadow">
                 <li className="flex">
                     <div className="flex items-center">
-                        <a href="#" className="text-gray-400 hover:text-gray-500">
+                        <a href="/" className="text-gray-400 hover:text-gray-500">
                             <HomeIcon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
                             <span className="sr-only">Home</span>
                         </a>
@@ -74,7 +74,7 @@ export default function Example({ children }) {
             </ol>
         </nav>
 
-        
+
       {/* <div className="px-4 py-5 sm:px-6">
         {title}
       </div> */}
