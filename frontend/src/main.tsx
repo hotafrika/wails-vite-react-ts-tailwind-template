@@ -29,6 +29,22 @@ const router = createBrowserRouter([
         path: "/practice",
         element: <Practice />,
       },
+      {
+        path: "/combinations",
+        element: <Combinations />,
+      },
+      {
+        path: "/position",
+        element: <Position />,
+      },
+      {
+        path: "/patterns",
+        element: <Patterns />,
+      },
+      {
+        path: "/Shines",
+        element: <Shines />,    
+      },
     ],
   },
 ]);
