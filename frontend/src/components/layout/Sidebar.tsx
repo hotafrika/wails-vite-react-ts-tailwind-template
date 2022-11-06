@@ -18,7 +18,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const navigation = [
+export const navigation = [
   { name: "Dashboard", href: "/", icon: HomeIcon, current: true },
   { name: "Musicality", href: "/music", icon: ChartBarIcon, current: false },
   { name: "Practice", href: "/practice", icon: ChartBarIcon, current: false },
