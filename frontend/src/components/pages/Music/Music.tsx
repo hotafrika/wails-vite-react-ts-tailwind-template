@@ -12,7 +12,6 @@ function Music() {
 
         <div>
           <MusicPlayer />
-          <MusicPlayer />
         </div>
       </div>
     </>
