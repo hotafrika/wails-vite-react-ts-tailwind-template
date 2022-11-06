@@ -1,3 +1,4 @@
+import React from "react";
 import { CheckCircleIcon, ChevronRightIcon, EnvelopeIcon } from '@heroicons/react/20/solid'
 
 const applications = [

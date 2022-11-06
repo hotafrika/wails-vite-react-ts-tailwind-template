@@ -1,3 +1,4 @@
+import React from "react";
 import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/20/solid'
 
 const people = [
