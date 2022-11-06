@@ -14,11 +14,11 @@ function Dashboard() {
           <div>
             <Stats />
           </div>
-          <div className="mt-4 flex">
-            <div className="flex-1 w-1/2">
+          <div className="mt-14">
+            <div>
               <PracticeCard />
             </div>
-            <div className="flex-1 w-1/2">
+            <div className="mt-16">
               <Playlist />
             </div>
           </div>

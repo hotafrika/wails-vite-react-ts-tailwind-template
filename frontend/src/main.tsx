@@ -4,7 +4,7 @@ import App from "./App";
 import "./index.css";
 import Dashboard from "./components/pages/Dashboard/Dashboard";
 import Music from "./components/pages/Music/Music";
-import Practice from "./components/layout/SelectPractice";
+import Practice from "./components/pages/Practice/Practice";
 import Combinations from "./components/grids/CombinationsGrid";
 import Position from "./components/grids/PositionsGrid";
 import Patterns from "./components/grids/PatternsGrid";
