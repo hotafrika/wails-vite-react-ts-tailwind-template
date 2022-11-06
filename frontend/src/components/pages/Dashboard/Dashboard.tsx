@@ -1,10 +1,10 @@
 import React from "react";
 import { Fragment, useState } from "react";
-import "./Dashboard.css";
 import MusicPlayer from "../../layout/MusicPlayer";
 import Stats from "../../layout/Stats";
 import Practice from "../../pages/Practice/Practice";
 import Playlist from "../../layout/Playlist";
+import PracticeCard from "../../layout/PracticeCard";
 
 function Dashboard() {
   return (
@@ -14,12 +14,11 @@ function Dashboard() {
           <div>
             <Stats />
           </div>
-          <div className="mt-4">
-            <div>
-
-              
+          <div className="mt-4 flex">
+            <div className="flex-1 w-1/2">
+              <PracticeCard />
             </div>
-            <div>
+            <div className="flex-1 w-1/2">
               <Playlist />
             </div>
           </div>
