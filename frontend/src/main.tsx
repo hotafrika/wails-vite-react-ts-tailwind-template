@@ -4,6 +4,7 @@ import App from './App'
 import './index.css'
 import Dashboard from './components/pages/Dashboard/Dashboard'
 import Music from './components/pages/Music/Music';
+import Practice from './components/pages/Practice/Practice'
 
 import {
   createBrowserRouter,
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/music",
         element: <Music />,
+      },
+      {
+        path: "/practice",
+        element: <Practice />,
       },
     ],
   },

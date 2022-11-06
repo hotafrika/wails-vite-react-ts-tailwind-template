@@ -14,15 +14,17 @@ import {
 } from '@heroicons/react/24/outline'
 import Dashboard from "./components/pages/Dashboard/Dashboard"
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 const navigation = [
     { name: 'Dashboard', href: '/', icon: HomeIcon, current: true },
     { name: 'Musicality', href: '/music', icon: ChartBarIcon, current: false },
+    { name: 'Practice', href: '/practice', icon: ChartBarIcon, current: false },
+
     { name: 'Shines', href: '#', icon: UsersIcon, current: false },
     { name: 'Positions', href: '#', icon: FolderIcon, current: false },
     { name: 'Patterns', href: '#', icon: CalendarIcon, current: false },
     { name: 'Combinations', href: '#', icon: InboxIcon, current: false },
-    { name: 'Practice', href: '#', icon: ChartBarIcon, current: false },
     { name: 'NewSideBarItem', href: '#', icon: ChartBarIcon, current: false },
 ]
 
@@ -32,6 +34,11 @@ function classNames(...classes) {
 
 function App() {
     const [sidebarOpen, setSidebarOpen] = useState(false)
+
+    let location = useLocation();
+
+    console.log('location', location)
+
     return (
 
         <>
@@ -95,7 +102,7 @@ function App() {
                                                     key={item.name}
                                                     href={item.href}
                                                     className={classNames(
-                                                        item.current
+                                                        item.href === location.pathname
                                                             ? 'bg-gray-900 text-white'
                                                             : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                                                         'group flex items-center px-2 py-2 text-base font-medium rounded-md'
@@ -103,7 +110,7 @@ function App() {
                                                 >
                                                     <item.icon
                                                         className={classNames(
-                                                            item.current ? 'text-gray-300' : 'text-gray-400 group-hover:text-gray-300',
+                                                            item.href === location.pathname ? 'text-gray-300' : 'text-gray-400 group-hover:text-gray-300',
                                                             'mr-4 flex-shrink-0 h-6 w-6'
                                                         )}
                                                         aria-hidden="true"
@@ -155,13 +162,13 @@ function App() {
                                         key={item.name}
                                         href={item.href}
                                         className={classNames(
-                                            item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                                            item.href===location.pathname ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                                             'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
                                         )}
                                     >
                                         <item.icon
                                             className={classNames(
-                                                item.current ? 'text-gray-300' : 'text-gray-400 group-hover:text-gray-300',
+                                                item.href===location.pathname ? 'text-gray-300' : 'text-gray-400 group-hover:text-gray-300',
                                                 'mr-3 flex-shrink-0 h-6 w-6'
                                             )}
                                             aria-hidden="true"
@@ -203,9 +210,7 @@ function App() {
                     </div>
                     <main className="flex-1">
                         <div className="py-6">
-                            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                                <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
-                            </div>
+                           
                             <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
 
                                 <Outlet />
