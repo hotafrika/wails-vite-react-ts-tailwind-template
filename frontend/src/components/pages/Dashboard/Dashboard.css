@@ -1,0 +1,29 @@
+.dashboard{
+    padding: 10px
+}
+
+.top-box{
+    /* border: 1px solid red; */
+    width: 800px;
+    height: 200px;
+}
+
+
+.top-box, .box-left, .box-right{
+    border: 1px solid red;
+}
+
+.middle{
+    display: flex;
+    margin-top: 10px
+    /* justify-content: space-around; */
+}
+
+.box-left,.box-right{
+    width: 300px;
+    height: 200px;
+}
+
+.box-left{
+    margin-right: 10px;
+}
