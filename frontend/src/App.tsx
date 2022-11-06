@@ -1,6 +1,7 @@
 import wailsLogo from './assets/wails.png'
 import './App.css'
 
+<<<<<<< HEAD
 function App() {
     return (
         <div className="min-h-screen bg-white grid grid-cols-1 place-items-center justify-items-center mx-auto py-8">
@@ -13,6 +14,15 @@ function App() {
                 </a>
             </div>
         </div>
+=======
+
+
+
+function App() {
+    return (
+
+        <Sidebar/>
+>>>>>>> 96c21c0 (init)
     )
 }
 
