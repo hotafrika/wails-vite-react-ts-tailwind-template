@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Pagination from "./Pagination";
+import {GetPositions } from "../../../wailsjs/go/main/App";
 
 const people = [
   {
@@ -13,6 +14,16 @@ const people = [
 ];
 
 export default function Example() {
+
+  const [positions, setPositions] = useState([]);
+
+  useEffect(()=>{
+    console.log('position')
+    let gotPosition = GetPositions(1,100);
+    // setPositions(gotPosition)
+    console.log('gotPosition', gotPosition);
+  },[])
+
   return (
     <>
       {/* <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

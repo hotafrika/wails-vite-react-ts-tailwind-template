@@ -27,7 +27,7 @@ export default function Example({ children }) {
                         </a>
                     </div>
                 </li>
-                <li key={page.name} className="flex">
+                <li key={page?.name} className="flex">
                         <div className="flex items-center">
                             <svg
                                 className="h-full w-6 flex-shrink-0 text-gray-200"
@@ -40,11 +40,11 @@ export default function Example({ children }) {
                                 <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
                             </svg>
                             <a
-                                href={page.href}
+                                href={page?.href}
                                 className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
-                                aria-current={page.current ? 'page' : undefined}
+                                aria-current={page?.current ? 'page' : undefined}
                             >
-                                {page.name}
+                                {page?.name}
                             </a>
                         </div>
                     </li>
