@@ -19,9 +19,14 @@ export default function Example() {
 
   useEffect(()=>{
     console.log('position')
-    let gotPosition = GetPositions(1,100);
+    try{
+      let gotPosition = GetPositions(1,100);
     // setPositions(gotPosition)
     console.log('gotPosition', gotPosition);
+    }catch(err){
+      console.log('err', err);
+    }
+    
   },[])
 
   return (
