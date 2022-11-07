@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Pagination from "./Pagination";
-import {GetPositions } from "../../../wailsjs/go/main/App";
+import { GetPositions } from "../../../wailsjs/go/main/App";
+import BaseModal from "../Modal/BaseModal";
 
 const people = [
   {
@@ -14,20 +15,23 @@ const people = [
 ];
 
 export default function Example() {
-
   const [positions, setPositions] = useState([]);
+  const [modalShow, setModalShow] = useState(false); 
 
-  useEffect(()=>{
-    console.log('position')
-    try{
-      let gotPosition = GetPositions(1,100);
-    // setPositions(gotPosition)
-    console.log('gotPosition', gotPosition);
-    }catch(err){
-      console.log('err', err);
+  useEffect(() => {
+    console.log("position");
+    try {
+      let gotPosition = GetPositions(1, 100);
+      // setPositions(gotPosition)
+      console.log("gotPosition", gotPosition);
+    } catch (err) {
+      console.log("err", err);
     }
-    
-  },[])
+  }, []);
+
+  const onClickPerson = ()=>{
+    setModalShow(true);
+  }
 
   return (
     <>
@@ -37,6 +41,7 @@ export default function Example() {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {people.map((person) => (
           <div
+            onClick={onClickPerson}
             key={person.email}
             className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"
           >
@@ -60,7 +65,7 @@ export default function Example() {
         ))}
       </div>
       <Pagination />
-
+      <BaseModal modalShow={modalShow} setModalShow={setModalShow} />
     </>
   );
 }

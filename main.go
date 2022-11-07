@@ -82,7 +82,7 @@ type Position struct {
 	tags    string `json:"tags"`
 }
 
-func (a *App) GetPositions(idx int, limit int) []Position {
+func (a *App) GetPositions(idx int, limit int) string {
 
 	db, err := getDB()
 	if err != nil {
@@ -128,5 +128,7 @@ func (a *App) GetPositions(idx int, limit int) []Position {
 	if err != nil {
 		log.Fatal(err)
 	}
-	return got
+	return fmt.Sprintf("Hello, It's show time!")
+
+	// return got
 }
