@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Pagination from "./Pagination";
 import { GetPositions } from "../../../wailsjs/go/main/App";
-import BaseModal from "../Modal/BaseModal";
+// import BaseModal from "../Modal/BaseModal";
+import Modal from "../layout/Modal";
 
 const people = [
   {
@@ -65,7 +66,7 @@ export default function Example() {
         ))}
       </div>
       <Pagination />
-      <BaseModal modalShow={modalShow} setModalShow={setModalShow} />
+      <Modal modalShow={modalShow} setModalShow={setModalShow} />
     </>
   );
 }
