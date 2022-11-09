@@ -1,7 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import React, { useState } from "react";
 
-export default function Pagination({ pageIndex, total, pageSize, previousPage, nextPage, setPageIndex }:any) {
+export default function Pagination({ pageIndex, total=0, pageSize, previousPage, nextPage, setPageIndex }:any) {
   console.log("Pagination", pageIndex, total, pageSize);
   const [navigationCount, setNavigationCount] = useState(() => {
     console.log("total", total, "pageSize", pageSize);
@@ -10,7 +10,9 @@ export default function Pagination({ pageIndex, total, pageSize, previousPage, n
   });
 
   console.log("navigationCount:", navigationCount);
-
+if(total===0){
+  return null
+}
   return (
     <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
       <div className="flex flex-1 justify-between sm:hidden">
