@@ -1,11 +1,10 @@
 package main
 
 import (
-	"database/sql"
 	"context"
-	"fmt"
+	"database/sql"
 	"encoding/json"
-	"io/ioutil"
+	"fmt"
 	"log"
 )
 
@@ -47,46 +46,42 @@ func (a *App) shutdown(ctx context.Context) {
 // 	return fmt.Sprintf("Hello %s, It's show time!", name)
 // }
 
+// func initDB() {
 
+// 	db, err := sql.Open("sqlite3", "./sqliteDB.db")
 
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
 
-func initDB() {
+// 	defer db.Close()
 
-	db, err := sql.Open("sqlite3", "./sqliteDB.db")
+// 	buf, err := ioutil.ReadFile("salsa_backup.db.sql")
 
-	if err != nil {
-		log.Fatal(err)
-	}
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
 
-	defer db.Close()
+// 	sqlStmt := string(buf)
 
-	buf, err := ioutil.ReadFile("salsa_backup.db.sql")
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	sqlStmt := string(buf)
-
-	_, err = db.Exec(sqlStmt)
-	if err != nil {
-		log.Printf("%q: %s\n", err, sqlStmt)
-		return
-	}
-}
+// 	_, err = db.Exec(sqlStmt)
+// 	if err != nil {
+// 		log.Printf("%q: %s\n", err, sqlStmt)
+// 		return
+// 	}
+// }
 
 func getDB() (*sql.DB, error) {
 	return sql.Open("sqlite3", "./sqliteDB.db")
 }
 
-
-func (a *App) GreetName(name string) string {
-	return fmt.Sprintf("Hello %s!", name)
-}
+// func (a *App) GreetName(name string) string {
+// 	return fmt.Sprintf("Hello %s!", name)
+// }
 
 type Position struct {
-	ID      string `json:"id"`
-	Name    string `json:"name"`
+	ID      string         `json:"id"`
+	Name    string         `json:"name"`
 	Picture sql.NullString `json:"picture"`
 	Type    sql.NullString `json:"type"`
 	tags    sql.NullString `json:"tags"`
@@ -99,7 +94,7 @@ func (a *App) GetPositions(idx int, limit int) string {
 		log.Fatal(err)
 	}
 
-	rows, err := db.Query("select ID,Name,Picture,Type,tags from positions limit ?,?;", idx,limit)
+	rows, err := db.Query("select ID,Name,Picture,Type,tags from positions limit ?,?;", idx, limit)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -139,8 +134,29 @@ func (a *App) GetPositions(idx int, limit int) string {
 		log.Fatal(err)
 	}
 
-	jsonGot, err := json.Marshal(got)
-	return fmt.Sprintf(string(jsonGot))
+	rowsCount, err := db.Query("SELECT COUNT(*) FROM positions")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rowsCount.Close()
 
-	// return got
+	var count int
+
+	for rowsCount.Next() {
+		if err := rowsCount.Scan(&count); err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	fmt.Printf("Number of rows are %s\n", count)
+
+	responseMap := map[string]interface{}{
+		"positions": got,
+		"total":     count,
+	}
+
+	responseString, err := json.Marshal(responseMap)
+
+	return fmt.Sprintf(string(responseString))
+
 }
