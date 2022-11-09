@@ -18,7 +18,7 @@ const people = [
 
 export default function Example() {
   const [modalShow, setModalShow] = useState(false); 
-  const [positions, setPositions] = useState([]);
+  const [positions, setPositions] = useState<any>([]);
   const [pageIdx, setPageIdx] = useState(1);
 
   useEffect(() => {

@@ -1,6 +1,7 @@
 import React from "react";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { Link } from "react-router-dom";
 import {
   Bars3Icon,
   CalendarIcon,
@@ -20,13 +21,13 @@ function classNames(...classes) {
 
 export const navigation = [
   { name: "Dashboard", href: "/", icon: HomeIcon, current: true },
-  { name: "Musicality", href: "/music", icon: ChartBarIcon, current: false },
-  { name: "Practice", href: "/practice", icon: ChartBarIcon, current: false },
+  { name: "Musicality", href: "#/music", icon: ChartBarIcon, current: false },
+  { name: "Practice", href: "#/practice", icon: ChartBarIcon, current: false },
 
-  { name: "Shines", href: "/shines", icon: UsersIcon, current: false },
-  { name: "Positions", href: "/position", icon: FolderIcon, current: false },
-  { name: "Patterns", href: "/patterns", icon: CalendarIcon, current: false },
-  { name: "Combinations", href: "/combinations", icon: InboxIcon, current: false },
+  { name: "Shines", href: "#/shines", icon: UsersIcon, current: false },
+  { name: "Positions", href: "#/position", icon: FolderIcon, current: false },
+  { name: "Patterns", href: "#/patterns", icon: CalendarIcon, current: false },
+  { name: "Combinations", href: "#/combinations", icon: InboxIcon, current: false },
   // { name: "NewSideBarItem", href: "#", icon: ChartBarIcon, current: false },
 ];
 
@@ -101,11 +102,11 @@ export default function Sidebar() {
                   </div>
                   <nav className="mt-5 space-y-1 px-2">
                     {navigation.map((item) => (
-                      <a
+
+              <Link to={item.href} key={item.name}><span
                         key={item.name}
-                        href={item.href}
                         className={classNames(
-                          item.href === location.pathname
+                          item.href.replace('#/', '/') === location.pathname
                             ? "bg-gray-900 text-white"
                             : "text-gray-300 hover:bg-gray-700 hover:text-white",
                           "group flex items-center px-2 py-2 text-base font-medium rounded-md"
@@ -121,7 +122,8 @@ export default function Sidebar() {
                           aria-hidden="true"
                         />
                         {item.name}
-                      </a>
+                      </span></Link>
+                      
                     ))}
                   </nav>
                 </div>
@@ -175,7 +177,7 @@ export default function Sidebar() {
                   key={item.name}
                   href={item.href}
                   className={classNames(
-                    item.href === location.pathname
+                    item.href.replace('#/', '/') === location.pathname
                       ? "bg-gray-900 text-white"
                       : "text-gray-300 hover:bg-gray-700 hover:text-white",
                     "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
