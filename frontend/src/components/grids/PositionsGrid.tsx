@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Pagination from "./Pagination";
 import { GetPositions } from "../../../wailsjs/go/main/App";
+// import { main } from "../../../wailsjs/go/models";
 // import BaseModal from "../Modal/BaseModal";
 import Modal from "../layout/Modal";
 
@@ -16,19 +17,31 @@ const people = [
 ];
 
 export default function Example() {
-  const [positions, setPositions] = useState([]);
   const [modalShow, setModalShow] = useState(false); 
+  const [positions, setPositions] = useState<any>([]);
+  const [pageIdx, setPageIdx] = useState(1);
 
   useEffect(() => {
     console.log("position");
     try {
-      let gotPosition = GetPositions(1, 100);
+
+
+       GetPositions(pageIdx, 10).then(gotPosition=>{
+
+         console.log("gotPosition", gotPosition);
+         let jsonGotPosition = JSON.parse(gotPosition)
+
+         console.log('jsonGotPosition------->', jsonGotPosition)
+
+         setPositions(jsonGotPosition)
+       });
       // setPositions(gotPosition)
-      console.log("gotPosition", gotPosition);
+      // console.log("gotPosition", gotPosition.result);
+      // console.log("gotPosition",JSON.parse( gotPosition.result));
     } catch (err) {
       console.log("err", err);
     }
-  }, []);
+  }, [pageIdx]);
 
   const onClickPerson = ()=>{
     setModalShow(true);
@@ -40,16 +53,16 @@ export default function Example() {
         <h1 className="text-2xl font-semibold text-gray-900">Positions</h1>
       </div> */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {people.map((person) => (
+        {positions.map((person) => (
           <div
             onClick={onClickPerson}
-            key={person.email}
+            key={person.id}
             className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"
           >
             <div className="flex-shrink-0">
               <img
                 className="h-10 w-10 rounded-full"
-                src={person.imageUrl}
+                src={person.picture}
                 alt=""
               />
             </div>
@@ -59,7 +72,7 @@ export default function Example() {
                 <p className="text-sm font-medium text-gray-900">
                   {person.name}
                 </p>
-                <p className="truncate text-sm text-gray-500">{person.role}</p>
+                <p className="truncate text-sm text-gray-500">{person?.type?.string}</p>
               </a>
             </div>
           </div>

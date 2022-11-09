@@ -10,9 +10,9 @@ import Position from "./components/grids/PositionsGrid";
 import Patterns from "./components/grids/PatternsGrid";
 import Shines from "./components/grids/BasicsGrid";
 
-import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import { createHashRouter, RouterProvider, Route } from "react-router-dom";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App />,
@@ -22,27 +22,27 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: "/music",
+        path: "music",
         element: <Music />,
       },
       {
-        path: "/practice",
+        path: "practice",
         element: <Practice />,
       },
       {
-        path: "/combinations",
+        path: "combinations",
         element: <Combinations />,
       },
       {
-        path: "/position",
+        path: "position",
         element: <Position />,
       },
       {
-        path: "/patterns",
+        path: "patterns",
         element: <Patterns />,
       },
       {
-        path: "/shines",
+        path: "shines",
         element: <Shines />,
       },
     ],

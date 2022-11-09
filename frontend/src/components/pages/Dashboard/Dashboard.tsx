@@ -7,9 +7,22 @@ import Playlist from "../../layout/Playlist";
 import PracticeCard from "../../layout/PracticeCard";
 
 function Dashboard() {
+
+
+  const [count, setCount] = useState(0)
+
+  const onClickBtn = ()=>{
+    setCount(count+1)
+  }
+
   return (
     <>
       <div className="dashboard">
+
+        <button onClick={onClickBtn}> test button</button>
+        <div>
+          {count}
+        </div>
         <div className="mt-4">
           <div>
             <Stats />

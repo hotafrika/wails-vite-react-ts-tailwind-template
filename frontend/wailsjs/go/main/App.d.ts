@@ -3,6 +3,4 @@
 
 export function GetPositions(arg1:number,arg2:number):Promise<string>;
 
-export function Greet(arg1:string):Promise<string>;
-
 export function GreetName(arg1:string):Promise<string>;
