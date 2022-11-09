@@ -1,7 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import React, { useState } from "react";
 
-export default function Pagination({ pageIndex, total, pageSize, previousPage, nextPage, setPageIndex }) {
+export default function Pagination({ pageIndex, total, pageSize, previousPage, nextPage, setPageIndex }:any) {
   console.log("Pagination", pageIndex, total, pageSize);
   const [navigationCount, setNavigationCount] = useState(() => {
     console.log("total", total, "pageSize", pageSize);
