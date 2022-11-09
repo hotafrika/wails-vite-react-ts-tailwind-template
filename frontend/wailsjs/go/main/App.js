@@ -6,10 +6,6 @@ export function GetPositions(arg1, arg2) {
   return window['go']['main']['App']['GetPositions'](arg1, arg2);
 }
 
-export function Greet(arg1) {
-  return window['go']['main']['App']['Greet'](arg1);
-}
-
 export function GreetName(arg1) {
   return window['go']['main']['App']['GreetName'](arg1);
 }

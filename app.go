@@ -1,8 +1,12 @@
 package main
 
 import (
+	"database/sql"
 	"context"
 	"fmt"
+	"encoding/json"
+	"io/ioutil"
+	"log"
 )
 
 // App struct
@@ -39,6 +43,104 @@ func (a *App) shutdown(ctx context.Context) {
 }
 
 // Greet returns a greeting for the given name
-func (a *App) Greet(name string) string {
-	return fmt.Sprintf("Hello %s, It's show time!", name)
+// func (a *App) Greet(name string) string {
+// 	return fmt.Sprintf("Hello %s, It's show time!", name)
+// }
+
+
+
+
+func initDB() {
+
+	db, err := sql.Open("sqlite3", "./sqliteDB.db")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer db.Close()
+
+	buf, err := ioutil.ReadFile("salsa_backup.db.sql")
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	sqlStmt := string(buf)
+
+	_, err = db.Exec(sqlStmt)
+	if err != nil {
+		log.Printf("%q: %s\n", err, sqlStmt)
+		return
+	}
+}
+
+func getDB() (*sql.DB, error) {
+	return sql.Open("sqlite3", "./sqliteDB.db")
+}
+
+
+func (a *App) GreetName(name string) string {
+	return fmt.Sprintf("Hello %s!", name)
+}
+
+type Position struct {
+	ID      string `json:"id"`
+	Name    string `json:"name"`
+	Picture sql.NullString `json:"picture"`
+	Type    sql.NullString `json:"type"`
+	tags    sql.NullString `json:"tags"`
+}
+
+func (a *App) GetPositions(idx int, limit int) string {
+
+	db, err := getDB()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	rows, err := db.Query("select ID,Name,Picture,Type,tags from positions limit ?,?;", idx,limit)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rows.Close()
+
+	got := []Position{}
+
+	for rows.Next() {
+		var id string
+		var name string
+		var picture sql.NullString
+		var mtype sql.NullString
+		var tags sql.NullString
+		err = rows.Scan(
+			&id,
+			&name,
+			&picture,
+			&mtype,
+			&tags,
+		)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		got = append(got, Position{
+			ID:      id,
+			Name:    name,
+			Picture: picture,
+			Type:    mtype,
+			tags:    tags,
+		})
+
+		fmt.Println(id, name)
+	}
+	err = rows.Err()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	jsonGot, err := json.Marshal(got)
+	return fmt.Sprintf(string(jsonGot))
+
+	// return got
 }
