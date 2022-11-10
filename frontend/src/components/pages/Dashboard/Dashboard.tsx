@@ -7,9 +7,14 @@ import Playlist from "../../layout/Playlist";
 import PracticeCard from "../../layout/PracticeCard";
 
 function Dashboard() {
+
+
+  const [count, setCount] = useState(0)
+
   return (
     <>
       <div className="dashboard">
+        
         <div className="mt-4">
           <div>
             <Stats />

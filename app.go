@@ -2,7 +2,10 @@ package main
 
 import (
 	"context"
+	"database/sql"
+	"encoding/json"
 	"fmt"
+	"log"
 )
 
 // App struct
@@ -39,6 +42,125 @@ func (a *App) shutdown(ctx context.Context) {
 }
 
 // Greet returns a greeting for the given name
-func (a *App) Greet(name string) string {
-	return fmt.Sprintf("Hello %s, It's show time!", name)
+// func (a *App) Greet(name string) string {
+// 	return fmt.Sprintf("Hello %s, It's show time!", name)
+// }
+
+// func initDB() {
+
+// 	db, err := sql.Open("sqlite3", "./sqliteDB.db")
+
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
+
+// 	defer db.Close()
+
+// 	buf, err := ioutil.ReadFile("salsa_backup.db.sql")
+
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
+
+// 	sqlStmt := string(buf)
+
+// 	_, err = db.Exec(sqlStmt)
+// 	if err != nil {
+// 		log.Printf("%q: %s\n", err, sqlStmt)
+// 		return
+// 	}
+// }
+
+func getDB() (*sql.DB, error) {
+	return sql.Open("sqlite3", "./sqliteDB.db")
+}
+
+// func (a *App) GreetName(name string) string {
+// 	return fmt.Sprintf("Hello %s!", name)
+// }
+
+type Position struct {
+	ID          string         `json:"id"`
+	Name        string         `json:"name"`
+	Picture     sql.NullString `json:"picture"`
+	Type        sql.NullString `json:"type"`
+	Tags        sql.NullString `json:"tags"`
+	Description sql.NullString `json:"description"`
+}
+
+func (a *App) GetPositions(idx int, limit int) string {
+
+	db, err := getDB()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	rows, err := db.Query("select ID,Name,Picture,Type,tags,description from positions ORDER BY ID limit ?,?;", (idx-1)*limit, limit)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rows.Close()
+
+	got := []Position{}
+
+	for rows.Next() {
+		var id string
+		var name string
+		var picture sql.NullString
+		var mtype sql.NullString
+		var tags sql.NullString
+		var description sql.NullString
+
+		err = rows.Scan(
+			&id,
+			&name,
+			&picture,
+			&mtype,
+			&tags,
+			&description,
+		)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		got = append(got, Position{
+			ID:          id,
+			Name:        name,
+			Picture:     picture,
+			Type:        mtype,
+			Description: description,
+			Tags:        tags,
+		})
+
+	}
+	err = rows.Err()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	rowsCount, err := db.Query("SELECT COUNT(*) FROM positions")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rowsCount.Close()
+
+	var count int
+
+	for rowsCount.Next() {
+		if err := rowsCount.Scan(&count); err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	// fmt.Printf("Number of rows are %s\n", count)
+
+	responseMap := map[string]interface{}{
+		"positions": got,
+		"total":     count,
+	}
+
+	responseString, err := json.Marshal(responseMap)
+
+	return fmt.Sprintf(string(responseString))
+
 }
