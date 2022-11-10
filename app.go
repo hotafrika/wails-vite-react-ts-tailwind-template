@@ -148,7 +148,7 @@ func (a *App) GetPositions(idx int, limit int) string {
 		}
 	}
 
-	fmt.Printf("Number of rows are %s\n", count)
+	// fmt.Printf("Number of rows are %s\n", count)
 
 	responseMap := map[string]interface{}{
 		"positions": got,

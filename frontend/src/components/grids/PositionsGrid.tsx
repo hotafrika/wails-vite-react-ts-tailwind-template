@@ -5,18 +5,8 @@ import { GetPositions } from "../../../wailsjs/go/main/App";
 // import BaseModal from "../Modal/BaseModal";
 import Modal from "../layout/Modal";
 
-const people = [
-  {
-    name: "Leslie Alexander",
-    email: "leslie.alexander@example.com",
-    role: "Co-Founder / CEO",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
-  // More people...
-];
 
-export default function Example() {
+export default function PositionsGrid() {
   const pageSize = 10;
   const [modalShow, setModalShow] = useState(false);
   const [positions, setPositions] = useState<any>([]);
