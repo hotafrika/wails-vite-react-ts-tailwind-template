@@ -3,7 +3,7 @@ import React from "react";
 function MusicPlayer() {
   return (
     <>
-      <div className="flex bg-[#fff]  justify-center ">
+      <div className="flex bg-gray-800  justify-center ">
         <div className="relative     p-4">
           <div className="flex w-[41rem] rounded-lg">
             <div className="flex items-center space-x-4 py-4 px-6">

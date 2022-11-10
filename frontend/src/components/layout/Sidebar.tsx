@@ -12,8 +12,7 @@ import {
   UsersIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { useLocation } from 'react-router-dom';
-
+import { useLocation } from "react-router-dom";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -21,13 +20,18 @@ function classNames(...classes) {
 
 export const navigation = [
   { name: "Dashboard", href: "/", icon: HomeIcon, current: true },
-  { name: "Musicality", href: "#/music", icon: ChartBarIcon, current: false },
-  { name: "Practice", href: "#/practice", icon: ChartBarIcon, current: false },
+  { name: "Musicality", href: "/music", icon: ChartBarIcon, current: false },
+  { name: "Practice", href: "/practice", icon: ChartBarIcon, current: false },
 
-  { name: "Shines", href: "#/shines", icon: UsersIcon, current: false },
-  { name: "Positions", href: "#/position", icon: FolderIcon, current: false },
-  { name: "Patterns", href: "#/patterns", icon: CalendarIcon, current: false },
-  { name: "Combinations", href: "#/combinations", icon: InboxIcon, current: false },
+  { name: "Shines", href: "/shines", icon: UsersIcon, current: false },
+  { name: "Positions", href: "/position", icon: FolderIcon, current: false },
+  { name: "Patterns", href: "/patterns", icon: CalendarIcon, current: false },
+  {
+    name: "Combinations",
+    href: "/combinations",
+    icon: InboxIcon,
+    current: false,
+  },
   // { name: "NewSideBarItem", href: "#", icon: ChartBarIcon, current: false },
 ];
 
@@ -36,7 +40,7 @@ export default function Sidebar() {
 
   let location = useLocation();
 
-  console.log('location', location)
+  console.log("location", location);
 
   return (
     <>
@@ -102,28 +106,28 @@ export default function Sidebar() {
                   </div>
                   <nav className="mt-5 space-y-1 px-2">
                     {navigation.map((item) => (
-
-              <Link to={item.href} key={item.name}><span
-                        key={item.name}
-                        className={classNames(
-                          item.href.replace('#/', '/') === location.pathname
-                            ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                          "group flex items-center px-2 py-2 text-base font-medium rounded-md"
-                        )}
-                      >
-                        <item.icon
+                      <Link to={item.href} key={item.name}>
+                        <span
+                          key={item.name}
                           className={classNames(
-                            item.href === location.pathname
-                              ? "text-gray-300"
-                              : "text-gray-400 group-hover:text-gray-300",
-                            "mr-4 flex-shrink-0 h-6 w-6"
+                            item.href.replace("#/", "/") === location.pathname
+                              ? "bg-gray-900 text-white"
+                              : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                            "group flex items-center px-2 py-2 text-base font-medium rounded-md"
                           )}
-                          aria-hidden="true"
-                        />
-                        {item.name}
-                      </span></Link>
-                      
+                        >
+                          <item.icon
+                            className={classNames(
+                              item.href === location.pathname
+                                ? "text-gray-300"
+                                : "text-gray-400 group-hover:text-gray-300",
+                              "mr-4 flex-shrink-0 h-6 w-6"
+                            )}
+                            aria-hidden="true"
+                          />
+                          {item.name}
+                        </span>
+                      </Link>
                     ))}
                   </nav>
                 </div>
@@ -173,11 +177,11 @@ export default function Sidebar() {
             </div>
             <nav className="mt-5 flex-1 space-y-1 px-2">
               {navigation.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   className={classNames(
-                    item.href.replace('#/', '/') === location.pathname
+                    item.href.replace("#/", "/") === location.pathname
                       ? "bg-gray-900 text-white"
                       : "text-gray-300 hover:bg-gray-700 hover:text-white",
                     "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
@@ -193,7 +197,7 @@ export default function Sidebar() {
                     aria-hidden="true"
                   />
                   {item.name}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>
