@@ -101,7 +101,8 @@ export default function PositionsGrid() {
             <div className="flex-shrink-0">
               <img
                 className="h-10 w-10 rounded-full"
-                src={position.picture}
+                // src={position.picture}
+                src="https://storage.googleapis.com/isidros-dev/pngwing.com.png"
                 alt=""
               />
             </div>
@@ -112,7 +113,7 @@ export default function PositionsGrid() {
               <div>
                 <span className="absolute inset-0" aria-hidden="true" />
                 <p className="text-sm font-medium text-gray-900">
-                  {position.name}
+                  {position.id} : {position.name}
                 </p>
                 <p className="truncate text-sm text-gray-500">
                   {position?.type?.String}
