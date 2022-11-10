@@ -95,7 +95,7 @@ func (a *App) GetPositions(idx int, limit int) string {
 		log.Fatal(err)
 	}
 
-	rows, err := db.Query("select ID,Name,Picture,Type,tags,description from positions ORDER BY ID limit ?,?;", idx, limit)
+	rows, err := db.Query("select ID,Name,Picture,Type,tags,description from positions ORDER BY ID limit ?,?;", (idx-1)*limit, limit)
 	if err != nil {
 		log.Fatal(err)
 	}
