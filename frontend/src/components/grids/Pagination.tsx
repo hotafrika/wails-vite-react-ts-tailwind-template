@@ -48,7 +48,7 @@ if(total===0){
             {new Array(navigationCount).fill(undefined).map((_, idx) => {
               if (idx === pageIndex + 3&& idx < navigationCount - 2) {
                 return (
-                  <span className="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700">
+                  <span key={idx} className="relative inline-flex items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700">
                     ...
                   </span>
                 );

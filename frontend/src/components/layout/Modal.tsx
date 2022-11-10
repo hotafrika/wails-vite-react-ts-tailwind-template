@@ -2,10 +2,18 @@ import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
 
-export default function Modal({ modalShow, setModalShow, position, nextPosition, previousPosition }) {
+export default function Modal({
+  modalShow,
+  setModalShow,
+  position,
+  nextPosition,
+  previousPosition,
+}) {
   // const [open, setOpen] = useState(modalShow)
 
   const cancelButtonRef = useRef(null);
+
+  console.log('position', position)
 
   return (
     <Transition.Root show={modalShow} as={Fragment}>
@@ -61,19 +69,7 @@ export default function Modal({ modalShow, setModalShow, position, nextPosition,
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-
-                      And all should cry, Beware! Beware!
-
-His flashing eyes, his floating hair!
-
-Weave a circle round him thrice,
-
-And close your eyes with holy dread
-
-For he on honey-dew hath fed,
-
-And drunk the milk of Paradise.
-                        {position?.type?.string}
+                        {position?.description?.String}
                       </p>
                     </div>
                   </div>
@@ -86,7 +82,7 @@ And drunk the milk of Paradise.
                   >
                     Next
                   </button>
-                  
+
                   <button
                     type="button"
                     className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:col-start-1 sm:mt-0 sm:text-sm"
