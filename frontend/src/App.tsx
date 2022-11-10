@@ -41,7 +41,7 @@ function App() {
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-          <main className="flex-1 relative">
+          <main className="flex-1 pb-64 relative ">
             <div className="py-6">
               <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
                 <HeaderFootwCard>
@@ -65,7 +65,7 @@ function App() {
                 {/* /End replace */}
               </div>
             </div>
-            <div className="bg-[#f90] fixed bottom-0 left-[16] w-[100%] ">
+            <div className="z-10 shadow-[0_-5px_30px_#0002]  fixed bottom-0 md:left-64 w-[calc(100vw-16rem)] ">
               <MusicPlayer />
             </div>
           </main>
