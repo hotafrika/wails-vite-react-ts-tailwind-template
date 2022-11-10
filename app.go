@@ -80,11 +80,12 @@ func getDB() (*sql.DB, error) {
 // }
 
 type Position struct {
-	ID      string         `json:"id"`
-	Name    string         `json:"name"`
-	Picture sql.NullString `json:"picture"`
-	Type    sql.NullString `json:"type"`
-	tags    sql.NullString `json:"tags"`
+	ID          string         `json:"id"`
+	Name        string         `json:"name"`
+	Picture     sql.NullString `json:"picture"`
+	Type        sql.NullString `json:"type"`
+	Tags        sql.NullString `json:"tags"`
+	Description sql.NullString `json:"description"`
 }
 
 func (a *App) GetPositions(idx int, limit int) string {
@@ -94,7 +95,7 @@ func (a *App) GetPositions(idx int, limit int) string {
 		log.Fatal(err)
 	}
 
-	rows, err := db.Query("select ID,Name,Picture,Type,tags from positions limit ?,?;", idx, limit)
+	rows, err := db.Query("select ID,Name,Picture,Type,tags,description from positions ORDER BY ID limit ?,?;", idx, limit)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -108,26 +109,29 @@ func (a *App) GetPositions(idx int, limit int) string {
 		var picture sql.NullString
 		var mtype sql.NullString
 		var tags sql.NullString
+		var description sql.NullString
+
 		err = rows.Scan(
 			&id,
 			&name,
 			&picture,
 			&mtype,
 			&tags,
+			&description,
 		)
 		if err != nil {
 			log.Fatal(err)
 		}
 
 		got = append(got, Position{
-			ID:      id,
-			Name:    name,
-			Picture: picture,
-			Type:    mtype,
-			tags:    tags,
+			ID:          id,
+			Name:        name,
+			Picture:     picture,
+			Type:        mtype,
+			Description: description,
+			Tags:        tags,
 		})
 
-		fmt.Println(id, name)
 	}
 	err = rows.Err()
 	if err != nil {

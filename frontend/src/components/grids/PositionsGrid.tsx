@@ -21,11 +21,13 @@ export default function PositionsGrid() {
       GetPositions(pageIndex, pageSize).then((response) => {
         console.log("gotPosition response---->", response);
         let jsonGotPositionResponse = JSON.parse(response);
+
         console.log(
           "jsonGotPosition------->",
           jsonGotPositionResponse.positions,
           jsonGotPositionResponse.total
         );
+        
         setPositions(jsonGotPositionResponse.positions);
         setTotal(jsonGotPositionResponse.total);
         if (modalShow) {
@@ -104,6 +106,8 @@ export default function PositionsGrid() {
                 alt=""
               />
             </div>
+            {/* <p>{position.id}</p>  */} 
+
             <div className="min-w-0 flex-1">
               {/* <a href="#" className="focus:outline-none"> */}
               <div>
@@ -112,7 +116,7 @@ export default function PositionsGrid() {
                   {position.id} : {position.name}
                 </p>
                 <p className="truncate text-sm text-gray-500">
-                  {position?.type?.string}
+                  {position?.type?.String}
                 </p>
               </div>
               {/* </a> */}
