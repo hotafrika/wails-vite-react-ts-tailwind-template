@@ -8,7 +8,7 @@ import Practice from "./components/pages/Practice/Practice";
 import Combinations from "./components/grids/CombinationsGrid";
 import Position from "./components/grids/PositionsGrid";
 import Patterns from "./components/grids/PatternsGrid";
-import Shines from "./components/grids/BasicsGrid";
+import Shines from "./components/grids/Shines";
 
 import { createHashRouter, RouterProvider, Route } from "react-router-dom";
 
