@@ -11,7 +11,7 @@ export default function Example({ children }) {
   let title = navigation.find((i) => i.href === location.pathname)?.name || "";
 
   return (
-    <div className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-gray-800 shadow-xl">
+    <div className="divide-y divide-gray-700 overflow-hidden rounded-lg bg-gray-800 shadow-xl">
       <nav className="flex" aria-label="Breadcrumb">
         <ol
           role="list"
@@ -28,10 +28,10 @@ export default function Example({ children }) {
               </Link>
             </div>
           </li>
-          <li key={page?.name} className="flex">
-            <div className="flex items-center">
+          <li key={page?.name} className="flex ">
+            <div className="flex items-center ">
               <svg
-                className="h-full w-6 flex-shrink-0 text-gray-200"
+                className="h-full w-6 flex-shrink-0 text-gray-500"
                 viewBox="0 0 24 44"
                 preserveAspectRatio="none"
                 fill="currentColor"
@@ -42,7 +42,7 @@ export default function Example({ children }) {
               </svg>
               <a
                 href={page?.href}
-                className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
+                className="ml-4 text-sm font-medium text-gray-400 hover:text-gray-100"
                 aria-current={page?.current ? "page" : undefined}
               >
                 {page?.name}
