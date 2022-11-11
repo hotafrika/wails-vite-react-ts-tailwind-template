@@ -5,7 +5,6 @@ import { GetPositions } from "../../../wailsjs/go/main/App";
 // import BaseModal from "../Modal/BaseModal";
 import Modal from "../layout/Modal";
 
-
 export default function PositionsGrid() {
   const pageSize = 10;
   const [modalShow, setModalShow] = useState(false);
@@ -27,7 +26,7 @@ export default function PositionsGrid() {
           jsonGotPositionResponse.positions,
           jsonGotPositionResponse.total
         );
-        
+
         setPositions(jsonGotPositionResponse.positions);
         setTotal(jsonGotPositionResponse.total);
         if (modalShow) {
@@ -91,31 +90,31 @@ export default function PositionsGrid() {
       {/* <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h1 className="text-2xl font-semibold text-gray-900">Positions</h1>
       </div> */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 mb-10 gap-4 sm:grid-cols-2">
         {positions.map((position) => (
           <div
             onClick={() => onClickPosition(position)}
             key={position.id}
-            className="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"
+            className="relative flex items-center space-x-3 rounded-lg  bg-gray-800 px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:bg-gray-700"
           >
             <div className="flex-shrink-0">
               <img
                 className="h-10 w-10 rounded-full"
-                // src={position.picture}
+                // src={position.picture.String}
                 src="https://storage.googleapis.com/isidros-dev/pngwing.com.png"
                 alt=""
               />
             </div>
-            {/* <p>{position.id}</p>  */} 
+            {/* <p>{position.id}</p>  */}
 
             <div className="min-w-0 flex-1">
               {/* <a href="#" className="focus:outline-none"> */}
               <div>
                 <span className="absolute inset-0" aria-hidden="true" />
-                <p className="text-sm font-medium text-gray-900">
+                <p className="text-sm font-medium text-gray-200">
                   {position.id} : {position.name}
                 </p>
-                <p className="truncate text-sm text-gray-500">
+                <p className="truncate text-sm text-gray-400">
                   {position?.type?.String}
                 </p>
               </div>

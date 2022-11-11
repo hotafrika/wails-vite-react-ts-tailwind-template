@@ -164,3 +164,5 @@ func (a *App) GetPositions(idx int, limit int) string {
 	return fmt.Sprintf(string(responseString))
 
 }
+
+// func (a *App) GetShines
