@@ -3,9 +3,9 @@ import React from "react";
 function MusicPlayer() {
   return (
     <>
-      <div className="flex justify-center">
-        <div className="relative z-10 p-4">
-          <div className="flex w-[41rem] rounded-lg bg-white shadow-xl shadow-black/5 ring-1 ring-slate-700/10">
+      <div className="flex bg-gray-800  justify-center ">
+        <div className="relative     p-4">
+          <div className="flex w-[41rem] rounded-lg">
             <div className="flex items-center space-x-4 py-4 px-6">
               <svg className="h-6 w-6 flex-none" fill="none">
                 <path

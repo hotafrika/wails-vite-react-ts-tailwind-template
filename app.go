@@ -87,6 +87,14 @@ type Position struct {
 	Tags        sql.NullString `json:"tags"`
 	Description sql.NullString `json:"description"`
 }
+type Shine struct {
+	ID          string         `json:"id"`
+	Name        string         `json:"name"`
+	Image       sql.NullString `json:"image"`
+	Video       sql.NullString `json:"video"`
+	Tags        sql.NullString `json:"tags"`
+	Description sql.NullString `json:"description"`
+}
 
 func (a *App) GetPositions(idx int, limit int) string {
 
@@ -156,6 +164,81 @@ func (a *App) GetPositions(idx int, limit int) string {
 
 	responseMap := map[string]interface{}{
 		"positions": got,
+		"total":     count,
+	}
+
+	responseString, err := json.Marshal(responseMap)
+
+	return fmt.Sprintf(string(responseString))
+
+}
+
+func (a *App) GetShines(idx int, limit int) string{
+	db, err := getDB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	rows, err := db.Query("select ID,name,description,image,tags,video from shines ORDER BY ID limit ?,?;", (idx-1)*limit, limit)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rows.Close()
+
+	got := []Shine{}
+
+	for rows.Next() {
+		var id string
+		var name string
+		var image sql.NullString
+		var video sql.NullString
+		var tags sql.NullString
+		var description sql.NullString
+
+		err = rows.Scan(
+			&id,
+			&name,
+			&image,
+			&video,
+			&tags,
+			&description,
+		)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		got = append(got, Shine{
+			ID:          id,
+			Name:        name,
+			Image:       image,
+			Video:       video,
+			Description: description,
+			Tags:        tags,
+		})
+
+	}
+	err = rows.Err()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	rowsCount, err := db.Query("SELECT COUNT(*) FROM shines")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rowsCount.Close()
+
+	var count int
+
+	for rowsCount.Next() {
+		if err := rowsCount.Scan(&count); err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	// fmt.Printf("Number of rows are %s\n", count)
+
+	responseMap := map[string]interface{}{
+		"shines": got,
 		"total":     count,
 	}
 

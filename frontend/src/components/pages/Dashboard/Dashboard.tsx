@@ -27,9 +27,9 @@ function Dashboard() {
               <Playlist />
             </div>
           </div>
-          <div className="mt-6">
+          {/* <div className="mt-6">
             <MusicPlayer />
-          </div>
+          </div> */}
         </div>
       </div>
     </>
