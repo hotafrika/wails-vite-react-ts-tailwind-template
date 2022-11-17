@@ -3,7 +3,7 @@ import Pagination from "./Pagination";
 import { GetBasics } from "../../../wailsjs/go/main/App";
 // import { main } from "../../../wailsjs/go/models";
 // import BaseModal from "../PositionModal/BaseModal";
-import PositionModal from "../layout/PositionPositionModal.tsxModal";
+import PositionModal from "../modals/BasicModal";
 
 export default function Basics() {
   const pageSize = 10;
@@ -108,7 +108,10 @@ export default function Basics() {
                   {basic.id} : {basic.name}
                 </p>
                 <p className="truncate text-sm text-gray-400">
-                  {basic?.type?.String}
+                  {basic.video}
+                  {basic.tags}
+                  {basic.description}
+                  {basic.image}
                 </p>
               </div>
               {/* </a> */}

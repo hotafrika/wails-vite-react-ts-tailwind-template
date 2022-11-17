@@ -2,18 +2,18 @@ import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
 
-export default function PositionModal({
+export default function BasicModal({
   modalShow,
   setModalShow,
-  position,
-  nextPosition,
-  previousPosition,
+  basic,
+  nextBasic,
+  previousBasic,
 }) {
   // const [open, setOpen] = useState(modalShow)
 
   const cancelButtonRef = useRef(null);
 
-  console.log('position', position)
+  console.log('basic', basic)
 
   return (
     <Transition.Root show={modalShow} as={Fragment}>
@@ -54,7 +54,7 @@ export default function PositionModal({
                     <div className="flex-shrink-0">
                       <img
                         className="h-10 w-10 rounded-full"
-                        src={position?.picture}
+                        src={basic?.picture}
                         alt=""
                       />
                     </div>
@@ -65,11 +65,11 @@ export default function PositionModal({
                       as="h3"
                       className="text-lg font-medium leading-6 text-gray-900"
                     >
-                      {position?.name}
+                      {basic?.name}
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        {position?.description?.String}
+                        {basic?.description?.String}
                       </p>
                     </div>
                   </div>
@@ -78,7 +78,7 @@ export default function PositionModal({
                   <button
                     type="button"
                     className="inline-flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:col-start-2 sm:text-sm"
-                    onClick={() => nextPosition()}
+                    onClick={() => nextBasic()}
                   >
                     Next
                   </button>
@@ -86,7 +86,7 @@ export default function PositionModal({
                   <button
                     type="button"
                     className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:col-start-1 sm:mt-0 sm:text-sm"
-                    onClick={() => previousPosition()}
+                    onClick={() => previousBasic()}
                     ref={cancelButtonRef}
                   >
                     Previous
