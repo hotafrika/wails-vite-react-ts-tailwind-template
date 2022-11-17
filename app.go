@@ -80,13 +80,14 @@ func getDB() (*sql.DB, error) {
 // }
 
 type Position struct {
-	ID          string         `json:"id"`
-	Name        string         `json:"name"`
-	Picture     sql.NullString `json:"picture"`
-	Type        sql.NullString `json:"type"`
-	Tags        sql.NullString `json:"tags"`
-	Description sql.NullString `json:"description"`
+	ID          string `json:"id"`
+	Name        string `json:"name"`
+	Picture     string `json:"picture"`
+	Type        string `json:"type"`
+	Tags        string `json:"tags"`
+	Description string `json:"description"`
 }
+
 type Basic struct {
 	ID          string `json:"id"`
 	Name        string `json:"name"`
@@ -94,6 +95,180 @@ type Basic struct {
 	Image       string `json:"image"`
 	Tags        string `json:"tags"`
 	Video       string `json:"video"`
+}
+
+type Vocab struct {
+	ID         string `json:"id"`
+	Word       string `json:"word"`
+	Definition string `json:"definition"`
+	Type       string `json:"type"`
+	Tags       string `json:"tags"`
+}
+
+type Pattern struct {
+	ID         string `json:"id"`
+	Word       string `json:"word"`
+	Definition string `json:"Definition"`
+	Type       string `json:"type"`
+	Tags       string `json:"tags""`
+}
+
+type Combination struct {
+	ID         string `json:"id"`
+	Word       string `json:"id"`
+	Definition string `json:"id"`
+	Type       string `json:"id"`
+	Tags       string `json:"id"`
+}
+
+func (a *App) GetVocab(idx int, limit int) string {
+	db, err := getDB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	rows, err := db.Query("select id,name,description,image,tags,video from basics limit ?,?;", (idx-1)*limit, limit)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rows.Close()
+
+	got := []Basic{}
+
+	for rows.Next() {
+		var id string
+		var name string
+		var description string
+		var image string
+		var video string
+		var tags string
+
+		err = rows.Scan(
+			&id,
+			&name,
+			&description,
+			&image,
+			&tags,
+			&video,
+		)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		got = append(got, Basic{
+			ID:          id,
+			Name:        name,
+			Description: description,
+			Image:       image,
+			Tags:        tags,
+			Video:       video,
+		})
+
+	}
+	err = rows.Err()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	rowsCount, err := db.Query("SELECT COUNT(*) FROM basics")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rowsCount.Close()
+
+	var count int
+
+	for rowsCount.Next() {
+		if err := rowsCount.Scan(&count); err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	// fmt.Printf("Number of rows are %s\n", count)
+
+	responseMap := map[string]interface{}{
+		"basics": got,
+		"total":  count,
+	}
+
+	responseString, err := json.Marshal(responseMap)
+
+	return fmt.Sprintf(string(responseString))
+
+}
+
+func (a *App) GetBasics(idx int, limit int) string {
+	db, err := getDB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	rows, err := db.Query("select id,name,description,image,tags,video from basics limit ?,?;", (idx-1)*limit, limit)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rows.Close()
+
+	got := []Basic{}
+
+	for rows.Next() {
+		var id string
+		var name string
+		var description string
+		var image string
+		var video string
+		var tags string
+
+		err = rows.Scan(
+			&id,
+			&name,
+			&description,
+			&image,
+			&tags,
+			&video,
+		)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		got = append(got, Basic{
+			ID:          id,
+			Name:        name,
+			Description: description,
+			Image:       image,
+			Tags:        tags,
+			Video:       video,
+		})
+
+	}
+	err = rows.Err()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	rowsCount, err := db.Query("SELECT COUNT(*) FROM basics")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rowsCount.Close()
+
+	var count int
+
+	for rowsCount.Next() {
+		if err := rowsCount.Scan(&count); err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	// fmt.Printf("Number of rows are %s\n", count)
+
+	responseMap := map[string]interface{}{
+		"basics": got,
+		"total":  count,
+	}
+
+	responseString, err := json.Marshal(responseMap)
+
+	return fmt.Sprintf(string(responseString))
+
 }
 
 func (a *App) GetPositions(idx int, limit int) string {
@@ -114,10 +289,10 @@ func (a *App) GetPositions(idx int, limit int) string {
 	for rows.Next() {
 		var id string
 		var name string
-		var picture sql.NullString
-		var mtype sql.NullString
-		var tags sql.NullString
-		var description sql.NullString
+		var picture string
+		var mtype string
+		var tags string
+		var description string
 
 		err = rows.Scan(
 			&id,
@@ -173,7 +348,82 @@ func (a *App) GetPositions(idx int, limit int) string {
 
 }
 
-func (a *App) GetBasics(idx int, limit int) string {
+func (a *App) GetPatterns(idx int, limit int) string {
+	db, err := getDB()
+	if err != nil {
+		log.Fatal(err)
+	}
+	rows, err := db.Query("select id,name,description,image,tags,video from basics limit ?,?;", (idx-1)*limit, limit)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rows.Close()
+
+	got := []Basic{}
+
+	for rows.Next() {
+		var id string
+		var name string
+		var description string
+		var image string
+		var video string
+		var tags string
+
+		err = rows.Scan(
+			&id,
+			&name,
+			&description,
+			&image,
+			&tags,
+			&video,
+		)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		got = append(got, Basic{
+			ID:          id,
+			Name:        name,
+			Description: description,
+			Image:       image,
+			Tags:        tags,
+			Video:       video,
+		})
+
+	}
+	err = rows.Err()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	rowsCount, err := db.Query("SELECT COUNT(*) FROM basics")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rowsCount.Close()
+
+	var count int
+
+	for rowsCount.Next() {
+		if err := rowsCount.Scan(&count); err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	// fmt.Printf("Number of rows are %s\n", count)
+
+	responseMap := map[string]interface{}{
+		"basics": got,
+		"total":  count,
+	}
+
+	responseString, err := json.Marshal(responseMap)
+
+	return fmt.Sprintf(string(responseString))
+
+}
+
+func (a *App) GetCombinations(idx int, limit int) string {
 	db, err := getDB()
 	if err != nil {
 		log.Fatal(err)

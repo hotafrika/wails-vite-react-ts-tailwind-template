@@ -6,6 +6,18 @@ export function GetBasics(arg1, arg2) {
   return window['go']['main']['App']['GetBasics'](arg1, arg2);
 }
 
+export function GetCombinations(arg1, arg2) {
+  return window['go']['main']['App']['GetCombinations'](arg1, arg2);
+}
+
+export function GetPatterns(arg1, arg2) {
+  return window['go']['main']['App']['GetPatterns'](arg1, arg2);
+}
+
 export function GetPositions(arg1, arg2) {
   return window['go']['main']['App']['GetPositions'](arg1, arg2);
+}
+
+export function GetVocab(arg1, arg2) {
+  return window['go']['main']['App']['GetVocab'](arg1, arg2);
 }

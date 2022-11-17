@@ -3,4 +3,10 @@
 
 export function GetBasics(arg1:number,arg2:number):Promise<string>;
 
+export function GetCombinations(arg1:number,arg2:number):Promise<string>;
+
+export function GetPatterns(arg1:number,arg2:number):Promise<string>;
+
 export function GetPositions(arg1:number,arg2:number):Promise<string>;
+
+export function GetVocab(arg1:number,arg2:number):Promise<string>;

@@ -15,7 +15,6 @@ export default function PositionsGrid() {
   const modalPrevOrNext = useRef("");
 
   useEffect(() => {
-    // console.log("position");
     try {
       GetPositions(pageIndex, pageSize).then((response) => {
         console.log("gotPosition response---->", response);
@@ -39,9 +38,6 @@ export default function PositionsGrid() {
           }
         }
       });
-      // setPositions(gotPosition)
-      // console.log("gotPosition", gotPosition.result);
-      // console.log("gotPosition",JSON.parse( gotPosition.result));
     } catch (err) {
       console.log("err", err);
     }

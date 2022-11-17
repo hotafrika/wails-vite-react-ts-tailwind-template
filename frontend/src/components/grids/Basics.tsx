@@ -20,7 +20,10 @@ export default function Basics() {
         console.log("gotBasics response---->", response);
         let jsonGotBasicsResponse = JSON.parse(response);
 
-        console.log("jsonGotBasics------->", jsonGotBasicsResponse);
+        console.log("jsonGotBasics------->",
+            jsonGotBasicsResponse,
+            jsonGotBasicsResponse.total
+        );
 
         setBasics(jsonGotBasicsResponse.positions);
         setTotal(jsonGotBasicsResponse.total);
