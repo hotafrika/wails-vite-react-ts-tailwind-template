@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import Pagination from "./Pagination";
-import { GetPositions, GetBasics } from "../../../wailsjs/go/main/App";
+import { GetBasics } from "../../../wailsjs/go/main/App";
 // import { main } from "../../../wailsjs/go/models";
-// import BaseModal from "../Modal/BaseModal";
-import Modal from "../layout/Modal";
+// import BaseModal from "../PositionModal/BaseModal";
+import PositionModal from "../layout/PositionPositionModal.tsxModal";
 
 export default function Basics() {
   const pageSize = 10;
   const [modalShow, setModalShow] = useState(false);
   const [pageIndex, setPageIndex] = useState(1);
-  const [basic, setShine] = useState<any>([]);
+  const [basic, setBasic] = useState<any>([]);
   const [total, setTotal] = useState(0);
   const modalPrevOrNext = useRef("");
   const [basics, setBasics] = useState<any>([]);
@@ -27,11 +27,11 @@ export default function Basics() {
 
         if (modalShow) {
           if (modalPrevOrNext.current === "next") {
-            setShine(jsonGotBasicsResponse.basics[0]);
+            setBasic(jsonGotBasicsResponse.basics[0]);
           }
 
           if (modalPrevOrNext.current === "prev") {
-            setShine(jsonGotBasicsResponse.basics[pageSize - 1]);
+            setBasic(jsonGotBasicsResponse.basics[pageSize - 1]);
           }
         }
       });
@@ -40,8 +40,8 @@ export default function Basics() {
     }
   }, [pageIndex]);
 
-  const onClickShine = (_basic) => {
-    setShine(_basic);
+  const onClickBasic = (_basic) => {
+    setBasic(_basic);
     setModalShow(true);
   };
 
@@ -58,36 +58,35 @@ export default function Basics() {
     }
   };
 
-  const nextPosition = () => {
-    const currentPositionIndex = basics.indexOf(basic);
-    if (currentPositionIndex < basics.length - 1) {
-      setShine(basics[currentPositionIndex + 1]);
+  const nextBasic = () => {
+    const currentBasicIndex = basics.indexOf(basic);
+    if (currentBasicIndex < basics.length - 1) {
+      setBasic(basics[currentBasicIndex + 1]);
     } else {
       modalPrevOrNext.current = "next";
       nextPage();
     }
   };
 
-  const previousPosition = () => {
-    const currentPositionIndex = basics.indexOf(basic);
-    if (currentPositionIndex > 0) {
-      setShine(basics[currentPositionIndex - 1]);
+  const previousBasic = () => {
+    const currentBasicIndex = basics.indexOf(basic);
+    if (currentBasicIndex > 0) {
+      setBasic(basics[currentBasicIndex - 1]);
     } else {
       modalPrevOrNext.current = "prev";
       previousPage();
     }
   };
 
-  return <></>;
   return (
     <>
       {/* <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h1 className="text-2xl font-semibold text-gray-900">Positions</h1>
+        <h1 className="text-2xl font-semibold text-gray-900">Basics</h1>
       </div> */}
       <div className="grid grid-cols-1 mb-10 gap-4 sm:grid-cols-2">
         {basics.map((basic) => (
           <div
-            onClick={() => onClickShine(basic)}
+            onClick={() => onClickBasic(basic)}
             key={basic.id}
             className="relative flex items-center space-x-3 rounded-lg  bg-gray-800 px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:bg-gray-700"
           >
@@ -127,12 +126,12 @@ export default function Basics() {
           setPageIndex={setPageIndex}
         />
       )}
-      <Modal
-        position={basic}
+      <PositionModal
+        basic={basic}
         modalShow={modalShow}
         setModalShow={setModalShow}
-        previousPosition={previousPosition}
-        nextPosition={nextPosition}
+        previousBasic={previousBasic}
+        nextBasic={nextBasic}
       />
     </>
   );

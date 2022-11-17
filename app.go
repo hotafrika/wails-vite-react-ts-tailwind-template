@@ -87,7 +87,7 @@ type Position struct {
 	Tags        sql.NullString `json:"tags"`
 	Description sql.NullString `json:"description"`
 }
-type Shine struct {
+type Basic struct {
 	ID          string         `json:"id"`
 	Name        string         `json:"name"`
 	Image       sql.NullString `json:"image"`
@@ -184,7 +184,7 @@ func (a *App) GetBasics(idx int, limit int) string {
 	}
 	defer rows.Close()
 
-	got := []Shine{}
+	got := []Basic{}
 
 	for rows.Next() {
 		var id string
@@ -206,7 +206,7 @@ func (a *App) GetBasics(idx int, limit int) string {
 			log.Fatal(err)
 		}
 
-		got = append(got, Shine{
+		got = append(got, Basic{
 			ID:          id,
 			Name:        name,
 			Image:       image,

@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import Pagination from "./Pagination";
 import { GetPositions } from "../../../wailsjs/go/main/App";
 // import { main } from "../../../wailsjs/go/models";
-// import BaseModal from "../Modal/BaseModal";
-import Modal from "../layout/Modal";
+// import BaseModal from "../PositionModal/BaseModal";
+import PositionModal from "../modals/PositionModal";
 
 export default function PositionsGrid() {
   const pageSize = 10;
@@ -133,7 +133,7 @@ export default function PositionsGrid() {
           setPageIndex={setPageIndex}
         />
       )}
-      <Modal
+      <PositionModal
         position={position}
         modalShow={modalShow}
         setModalShow={setModalShow}
