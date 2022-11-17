@@ -1,47 +1,47 @@
 import React, { useState, useEffect, useRef } from "react";
 import Pagination from "./Pagination";
-import { GetPositions, GetShines } from "../../../wailsjs/go/main/App";
+import { GetPositions, GetBasics } from "../../../wailsjs/go/main/App";
 // import { main } from "../../../wailsjs/go/models";
 // import BaseModal from "../Modal/BaseModal";
 import Modal from "../layout/Modal";
 
-export default function Shines() {
+export default function Basics() {
   const pageSize = 10;
   const [modalShow, setModalShow] = useState(false);
   const [pageIndex, setPageIndex] = useState(1);
-  const [shine, setShine] = useState<any>([]);
+  const [basic, setShine] = useState<any>([]);
   const [total, setTotal] = useState(0);
   const modalPrevOrNext = useRef("");
-  const [shines, setShines] = useState<any>([]);
+  const [basics, setBasics] = useState<any>([]);
 
   useEffect(() => {
     try {
-      GetShines(pageIndex, pageSize).then((response) => {
-        console.log("gotShines response---->", response);
-        let jsonGotShinesResponse = JSON.parse(response);
+      GetBasics(pageIndex, pageSize).then((response) => {
+        console.log("gotBasics response---->", response);
+        let jsonGotBasicsResponse = JSON.parse(response);
 
-        console.log("jsonGotShines------->", jsonGotShinesResponse);
+        console.log("jsonGotBasics------->", jsonGotBasicsResponse);
 
-        setShines(jsonGotShinesResponse.positions);
-        setTotal(jsonGotShinesResponse.total);
+        setBasics(jsonGotBasicsResponse.positions);
+        setTotal(jsonGotBasicsResponse.total);
 
         if (modalShow) {
           if (modalPrevOrNext.current === "next") {
-            setShine(jsonGotShinesResponse.shines[0]);
+            setShine(jsonGotBasicsResponse.basics[0]);
           }
 
           if (modalPrevOrNext.current === "prev") {
-            setShine(jsonGotShinesResponse.shines[pageSize - 1]);
+            setShine(jsonGotBasicsResponse.basics[pageSize - 1]);
           }
         }
       });
     } catch (error) {
-      console.log("Error getting shine");
+      console.log("Error getting basic");
     }
   }, [pageIndex]);
 
-  const onClickShine = (_shine) => {
-    setShine(_shine);
+  const onClickShine = (_basic) => {
+    setShine(_basic);
     setModalShow(true);
   };
 
@@ -59,9 +59,9 @@ export default function Shines() {
   };
 
   const nextPosition = () => {
-    const currentPositionIndex = shines.indexOf(shine);
-    if (currentPositionIndex < shines.length - 1) {
-      setShine(shines[currentPositionIndex + 1]);
+    const currentPositionIndex = basics.indexOf(basic);
+    if (currentPositionIndex < basics.length - 1) {
+      setShine(basics[currentPositionIndex + 1]);
     } else {
       modalPrevOrNext.current = "next";
       nextPage();
@@ -69,9 +69,9 @@ export default function Shines() {
   };
 
   const previousPosition = () => {
-    const currentPositionIndex = shines.indexOf(shine);
+    const currentPositionIndex = basics.indexOf(basic);
     if (currentPositionIndex > 0) {
-      setShine(shines[currentPositionIndex - 1]);
+      setShine(basics[currentPositionIndex - 1]);
     } else {
       modalPrevOrNext.current = "prev";
       previousPage();
@@ -85,31 +85,31 @@ export default function Shines() {
         <h1 className="text-2xl font-semibold text-gray-900">Positions</h1>
       </div> */}
       <div className="grid grid-cols-1 mb-10 gap-4 sm:grid-cols-2">
-        {shines.map((shine) => (
+        {basics.map((basic) => (
           <div
-            onClick={() => onClickShine(shine)}
-            key={shine.id}
+            onClick={() => onClickShine(basic)}
+            key={basic.id}
             className="relative flex items-center space-x-3 rounded-lg  bg-gray-800 px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:bg-gray-700"
           >
             <div className="flex-shrink-0">
               <img
                 className="h-10 w-10 rounded-full"
-                // src={shine.picture.String}
+                // src={basic.picture.String}
                 src="https://storage.googleapis.com/isidros-dev/pngwing.com.png"
                 alt=""
               />
             </div>
-            {/* <p>{shine.id}</p>  */}
+            {/* <p>{basic.id}</p>  */}
 
             <div className="min-w-0 flex-1">
               {/* <a href="#" className="focus:outline-none"> */}
               <div>
                 <span className="absolute inset-0" aria-hidden="true" />
                 <p className="text-sm font-medium text-gray-200">
-                  {shine.id} : {shine.name}
+                  {basic.id} : {basic.name}
                 </p>
                 <p className="truncate text-sm text-gray-400">
-                  {shine?.type?.String}
+                  {basic?.type?.String}
                 </p>
               </div>
               {/* </a> */}
@@ -128,7 +128,7 @@ export default function Shines() {
         />
       )}
       <Modal
-        position={shine}
+        position={basic}
         modalShow={modalShow}
         setModalShow={setModalShow}
         previousPosition={previousPosition}

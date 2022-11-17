@@ -173,12 +173,12 @@ func (a *App) GetPositions(idx int, limit int) string {
 
 }
 
-func (a *App) GetShines(idx int, limit int) string{
+func (a *App) GetBasics(idx int, limit int) string {
 	db, err := getDB()
 	if err != nil {
 		log.Fatal(err)
 	}
-	rows, err := db.Query("select ID,name,description,image,tags,video from shines ORDER BY ID limit ?,?;", (idx-1)*limit, limit)
+	rows, err := db.Query("select ID,name,description,image,tags,video from basics ORDER BY ID limit ?,?;", (idx-1)*limit, limit)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -221,7 +221,7 @@ func (a *App) GetShines(idx int, limit int) string{
 		log.Fatal(err)
 	}
 
-	rowsCount, err := db.Query("SELECT COUNT(*) FROM shines")
+	rowsCount, err := db.Query("SELECT COUNT(*) FROM basics")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -238,8 +238,8 @@ func (a *App) GetShines(idx int, limit int) string{
 	// fmt.Printf("Number of rows are %s\n", count)
 
 	responseMap := map[string]interface{}{
-		"shines": got,
-		"total":     count,
+		"basics": got,
+		"total":  count,
 	}
 
 	responseString, err := json.Marshal(responseMap)

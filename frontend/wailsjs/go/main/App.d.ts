@@ -3,4 +3,4 @@
 
 export function GetPositions(arg1:number,arg2:number):Promise<string>;
 
-export function GetShines(arg1:number,arg2:number):Promise<string>;
+export function GetBasics(arg1:number,arg2:number):Promise<string>;

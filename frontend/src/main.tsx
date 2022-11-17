@@ -8,7 +8,7 @@ import Practice from "./components/pages/Practice/Practice";
 import Combinations from "./components/grids/CombinationsGrid";
 import Position from "./components/grids/PositionsGrid";
 import Patterns from "./components/grids/PatternsGrid";
-import Shines from "./components/grids/Shines";
+import Basics from "./components/grids/Basics";
 
 import { createHashRouter, RouterProvider, Route } from "react-router-dom";
 
@@ -42,8 +42,8 @@ const router = createHashRouter([
         element: <Patterns />,
       },
       {
-        path: "shines",
-        element: <Shines />,
+        path: "basics",
+        element: <Basics />,
       },
     ],
   },

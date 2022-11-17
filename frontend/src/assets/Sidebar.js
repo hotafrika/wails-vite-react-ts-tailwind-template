@@ -14,7 +14,7 @@ import {
 const navigation = [
     { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
     { name: 'Musicality', href: '#', icon: ChartBarIcon, current: false },
-    { name: 'Shines', href: '#', icon: UsersIcon, current: false },
+    { name: 'Basics', href: '#', icon: UsersIcon, current: false },
     { name: 'Positions', href: '#', icon: FolderIcon, current: false },
     { name: 'Patterns', href: '#', icon: CalendarIcon, current: false },
     { name: 'Combinations', href: '#', icon: InboxIcon, current: false },

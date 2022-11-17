@@ -6,6 +6,6 @@ export function GetPositions(arg1, arg2) {
   return window['go']['main']['App']['GetPositions'](arg1, arg2);
 }
 
-export function GetShines(arg1, arg2) {
-  return window['go']['main']['App']['GetShines'](arg1, arg2);
+export function GetBasics(arg1, arg2) {
+  return window['go']['main']['App']['GetBasics'](arg1, arg2);
 }
