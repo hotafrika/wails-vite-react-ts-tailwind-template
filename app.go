@@ -88,12 +88,12 @@ type Position struct {
 	Description sql.NullString `json:"description"`
 }
 type Basic struct {
-	ID          string         `json:"id"`
-	Name        string         `json:"name"`
-	Image       sql.NullString `json:"image"`
-	Video       sql.NullString `json:"video"`
-	Tags        sql.NullString `json:"tags"`
-	Description sql.NullString `json:"description"`
+	ID          string `json:"id"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Image       string `json:"image"`
+	Tags        string `json:"tags"`
+	Video       string `json:"video"`
 }
 
 func (a *App) GetPositions(idx int, limit int) string {
@@ -178,7 +178,7 @@ func (a *App) GetBasics(idx int, limit int) string {
 	if err != nil {
 		log.Fatal(err)
 	}
-	rows, err := db.Query("select ID,name,description,image,tags,video from basics ORDER BY ID limit ?,?;", (idx-1)*limit, limit)
+	rows, err := db.Query("select id,name,description,image,tags,video from basics limit ?,?;", (idx-1)*limit, limit)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -189,18 +189,18 @@ func (a *App) GetBasics(idx int, limit int) string {
 	for rows.Next() {
 		var id string
 		var name string
-		var image sql.NullString
-		var video sql.NullString
-		var tags sql.NullString
-		var description sql.NullString
+		var description string
+		var image string
+		var video string
+		var tags string
 
 		err = rows.Scan(
 			&id,
 			&name,
-			&image,
-			&video,
-			&tags,
 			&description,
+			&image,
+			&tags,
+			&video,
 		)
 		if err != nil {
 			log.Fatal(err)
@@ -209,10 +209,10 @@ func (a *App) GetBasics(idx int, limit int) string {
 		got = append(got, Basic{
 			ID:          id,
 			Name:        name,
-			Image:       image,
-			Video:       video,
 			Description: description,
+			Image:       image,
 			Tags:        tags,
+			Video:       video,
 		})
 
 	}
